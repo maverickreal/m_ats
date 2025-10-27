@@ -1,4 +1,4 @@
-const formatFileSize = (bytesCount: number): string => {
+export const formatFileSize = (bytesCount: number): string => {
     const units = ["B", "KB", "MB"];
     let i: number = 0;
 
@@ -10,6 +10,4 @@ const formatFileSize = (bytesCount: number): string => {
     return bytesCount.toFixed(2) + " " + units[i];
 };
 
-export {
-    formatFileSize
-};
+export const generateUUID = (): string => crypto.randomUUID();

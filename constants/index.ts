@@ -139,14 +139,12 @@ export const AIResponseFormat = `
 
 export const prepareInstructions = ({
     jobTitle,
-    jobDescription,
-    AIResponseFormat,
+    jobDescription
 }: {
     jobTitle: string;
     jobDescription: string;
-    AIResponseFormat: string;
-}) =>
-    `You are an expert in ATS (Applicant Tracking System) and resume analysis.
+}) => {
+    return `You are an expert in ATS (Applicant Tracking System) and resume analysis.
   Please analyze and rate this resume and suggest how to improve it.
   The rating can be low if the resume is bad.
   Be thorough and detailed. Don't be afraid to point out any mistakes or areas for improvement.
@@ -158,6 +156,7 @@ export const prepareInstructions = ({
   Provide the feedback using the following format: ${AIResponseFormat}
   Return the analysis as a JSON object, without any other text and without the backticks.
   Do not include any other text or comments.`;
+};
 
 // 5 MB:
 export const MAX_FILE_SIZE = 5 * 1024 * 1024;
