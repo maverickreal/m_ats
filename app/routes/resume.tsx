@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
+import ATS from "~/components/ATS";
+import Details from "~/components/Details";
+import Summary from "~/components/Summary";
 import { usePuterStore } from "~/lib/puter";
 
 const Meta = () => {
@@ -14,7 +17,7 @@ const Resume = () => {
     const { auth, isLoading, fs, kv } = usePuterStore();
     const [imageUrl, setImageUrl] = useState("");
     const [resumeUrl, setResumeUrl] = useState("");
-    const [feedback, setFeedback] = useState("");
+    const [feedback, setFeedback] = useState<Feedback>();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -75,14 +78,16 @@ const Resume = () => {
                     <h2 className="text-4xl !text-black font-bold">Resume Review</h2>
                     {feedback ? (
                         <div className="flex flex-col gap-8 animate-in fade-in duration-1000">
-                            Summary M_ATS Info
+                            <Summary feedback={feedback}></Summary>
+                            <ATS score={feedback.ATS.score || 0} suggestions={feedback.ATS.tips || []} ></ATS>
+                            <Details feedback={feedback}></Details>
                         </div>
                     ) : (
                         <img src="/images/resume-scan-2.gif" className="w-full" />
                     )}
                 </section>
-            </div>
-        </main>
+            </div >
+        </main >
     );
 };
 
